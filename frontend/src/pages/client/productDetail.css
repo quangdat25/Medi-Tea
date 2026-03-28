@@ -1,4 +1,5 @@
 .productDetailContainer {
+  width: 100%;
   padding: 36px 0 72px;
   background:
     radial-gradient(
@@ -13,6 +14,22 @@
     ),
     linear-gradient(180deg, #fcfaf5 0%, #f5f0e6 100%);
   min-height: 100vh;
+}
+
+.productDetailWrapper {
+  width: 100%;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(163, 182, 104, 0.12),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(197, 177, 126, 0.1),
+      transparent 20%
+    ),
+    linear-gradient(180deg, #fcfaf5 0%, #f5f0e6 100%);
 }
 
 .productDetailWrap {
@@ -209,10 +226,17 @@
   color: #342b20;
 }
 
+.productDetailQtyControls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .productDetailQtyBox {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .productDetailQtyBox .ant-btn {
@@ -329,6 +353,34 @@
   gap: 16px;
 }
 
+.productDetailView3DBtn {
+  height: 44px !important;
+  padding: 0 14px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #eff6de 0%, #deebc2 100%) !important;
+  border: 1px solid #9ab565 !important;
+  color: #5c7728 !important;
+  font-weight: 700;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(138, 168, 77, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.productDetailView3DBtn:hover {
+  background: linear-gradient(135deg, #9ab565 0%, #86a34f 100%) !important;
+  border-color: #7f9c4a !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(138, 168, 77, 0.24);
+}
+
+.productDetailView3DBtn:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 1200px) {
   .productDetailTitle {
     font-size: 40px;
@@ -403,6 +455,16 @@
   .productDetailCartBtn,
   .productDetailGhostBtn {
     width: 100%;
+  }
+
+  .productDetailQtyControls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .productDetailView3DBtn {
+    width: 100%;
+    justify-content: center;
   }
 
   .productDetailExtra {

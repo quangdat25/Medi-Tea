@@ -6,6 +6,7 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
   HomeOutlined,
+  CodeSandboxOutlined,
 } from "@ant-design/icons";
 import "./shop.css";
 import {
@@ -13,6 +14,7 @@ import {
   listProductByCategory,
 } from "../../config/ProductRequest";
 import { listCategory } from "../../config/CategoryRequest";
+import { getProduct3DModelId } from "../../utils/getProduct3DModelId";
 
 const { Option } = Select;
 
@@ -41,9 +43,16 @@ function Shop() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      await fetchCategory();
-      await fetchProduct();
-      setLoading(false);
+      try {
+        await fetchCategory();
+        await fetchProduct();
+      } catch (error) {
+        console.error("Failed to load shop data:", error);
+        setDataCategory([]);
+        setDataProduct([]);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, []);
@@ -293,6 +302,20 @@ function Shop() {
                           <div className="shopPrice">
                             {price.toLocaleString()}đ
                           </div>
+
+                          <Button
+                            className="shopView3D"
+                            icon={<CodeSandboxOutlined />}
+                            onClick={() => {
+                              const modelId = getProduct3DModelId(item);
+                              if (modelId) {
+                                navigate(`/3d-products/${modelId}`);
+                              }
+                            }}
+                            title="Xem 3D"
+                          >
+                            3D
+                          </Button>
 
                           <Button
                             className="shopAdd"

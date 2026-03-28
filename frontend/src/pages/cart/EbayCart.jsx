@@ -109,7 +109,6 @@ function Cart() {
   }
 
   return (
-    <div style={{ marginTop: "140px" }}>
       <div className="cartPage">
         <div className="cartDecor cartDecorLeft" />
         <div className="cartDecor cartDecorRight" />
@@ -294,7 +293,6 @@ function Cart() {
           )}
         </div>
       </div>
-    </div>
   );
 }
 
