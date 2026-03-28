@@ -38,51 +38,138 @@ import ProductPage from "./pages/client/ProductPage.jsx";
 import Cart from "./pages/cart/EbayCart.jsx";
 import Checkout from "./pages/cart/Checkout.jsx";
 import PaymentSuccess from "./pages/cart/PaymentSuccess.jsx";
-
+import Homepage from "./components/Homepage.jsx";
 import AboutPage from "./pages/client/AboutPage.jsx";
 import BanchaPage from "./pages/client/BanchaPage.jsx";
 import ProductMain from "./components/homepage/ProductMain.jsx";
 import ProductList from "./components/homepage/ProductList.jsx";
-
-import StoreProfile from "./components/admin/store/StoreProfile.jsx";
-import TableReview from "./components/admin/review/TableReview.jsx";
-import TableFeedback from "./components/admin/feedback/TableFeedback.jsx";
-import TableComplaint from "./components/admin/complaint/TableComplaint.jsx";
-import SalesReport from "./components/admin/report/SalesReport.jsx";
-import MyOrders from "./pages/client/MyOrders.jsx";
-import MyFeedback from "./pages/client/MyFeedback.jsx";
-import HomePage from "./components/HomePage.jsx";
-
+import FAQ from "./pages/client/FAQ.jsx";
+import Contact from "./pages/client/Contact.jsx";
+import Media from "./pages/client/Media.jsx";
+import Blog from "./pages/client/Blog.jsx";
+import BlogDetail from "./pages/client/BlogDetail.jsx";
+import PrivacyPolicy from "./pages/client/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/client/TermsOfService.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: "product/:id", element: <ProductPage /> },
-      { path: "about", element: <AboutPage /> },
-      { path: "bancha-detail", element: <BanchaPage /> },
-      { path: "product-main", element: <ProductMain /> },
-      { path: "product-list", element: <ProductList /> },
-      { path: "shop", element: <Shop /> },
-      { path: "story", element: <Story /> },
-      { path: "story-3", element: <Original /> },
-      { path: "story-2", element: <Philosophy /> },
-      { path: "cart", element: <Cart /> },
-      { path: "checkout", element: <Checkout /> },
-      { path: "payment-success/:orderId", element: <PaymentSuccess /> },
-      { path: "orders", element: <MyOrders /> },
-      { path: "my-feedback", element: <MyFeedback /> },
-      { path: "/3d-products", element: <Products3DList /> },
-      { path: "/3d-products/:id", element: <Product3DDetail /> },
-      { path: "/tea-mixer", element: <TeaMixerBoard /> },
+      {
+        index: true,
+        element: <Homepage />,
+      },
+      {
+        path: "product/:id",
+        element: <ProductPage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+       {
+        path: "bancha-detail",
+        element: <BanchaPage />,
+      },
+       {
+        path: "product-main",
+        element: <ProductMain />,
+      },
+      {
+        path: "product-list",
+        element: <ProductList />,
+      },
+
+      {
+        path: "shop",
+        element: <Shop />,
+      },
+      {
+        path: "story",
+        element: <Story />,
+      },
+      {
+        path: "story-3",
+        element: <Original />,
+      },
+      {
+        path: "story-2",
+        element: <Philosophy />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "faq",
+        element: <FAQ />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "media",
+        element: <Media />,
+      },
+      {
+        path: "privacy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "terms",
+        element: <TermsOfService />,
+      },
+      {
+        path: "blog",
+        element: <Blog />,
+      },
+      {
+        path: "blog/:id",
+        element: <BlogDetail />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "payment-success/:orderId",
+        element: <PaymentSuccess />,
+      },
+      // 3D Experience pages — standalone, no Header/Footer
+      {
+        path: "/3d-products",
+        element: <Products3DList />,
+      },
+      {
+        path: "/3d-products/:id",
+        element: <Product3DDetail />,
+      },
+      // Tea Mixer Game — standalone
+      {
+        path: "/tea-mixer",
+        element: <TeaMixerBoard />,
+      },
+      
     ],
   },
-  { path: "login", element: <LoginPage /> },
-  { path: "register", element: <RegisterPage /> },
-  { path: "forgot-password", element: <ForgotPassword /> },
-  { path: "/reset-password", element: <ResetPassword /> },
+  {
+    path: "login",
+    element: <LoginPage />,
+  },
+  {
+    path: "register",
+    element: <RegisterPage />,
+  },
+  {
+    path: "forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
+  },
   {
     element: <AdminRoute />,
     children: [
@@ -104,42 +191,26 @@ const router = createBrowserRouter([
           { path: "detail-product", element: <DetailProduct /> },
           { path: "update-product", element: <UpdateProduct /> },
 
-          // CATEGORY
+          //Category
           { path: "table-category", element: <TableCategory /> },
           { path: "create-category", element: <CreateCategory /> },
           { path: "detail-category", element: <DetailCategory /> },
           { path: "update-category", element: <UpdateCategory /> },
-
-          // COUPON
+          //coupon
           { path: "table-coupon", element: <TableCoupon /> },
-
-          // ORDER
+          //order
           { path: "table-order", element: <TableOrder /> },
-
-          // STORE PROFILE
-          { path: "store-profile", element: <StoreProfile /> },
-
-          // REVIEW
-          { path: "table-review", element: <TableReview /> },
-
-          // FEEDBACK
-          { path: "table-feedback", element: <TableFeedback /> },
-
-          // COMPLAINT
-          { path: "table-complaint", element: <TableComplaint /> },
-
-          // SALES REPORT
-          { path: "sales-report", element: <SalesReport /> },
         ],
       },
     ],
   },
 ]);
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    {/* <AppProvider> */}
     <ConfigProvider locale={enUS}>
       <RouterProvider router={router} />
     </ConfigProvider>
+    {/* </AppProvider> */}
   </StrictMode>,
 );
