@@ -126,8 +126,8 @@ function Header() {
     navigate("/edit-profile");
   };
 
-  // Hide header on shop, product detail, and cart pages
-  const hideHeaderPages = ["/shop", "/product", "/cart"];
+  // Hide header on shop and product detail pages
+  const hideHeaderPages = ["/shop", "/product"];
   const shouldHideHeader = hideHeaderPages.some(page => 
     location.pathname === page || location.pathname.startsWith(page + "/")
   );

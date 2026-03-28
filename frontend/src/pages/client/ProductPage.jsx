@@ -18,12 +18,13 @@ import {
   ShareAltOutlined,
   MinusOutlined,
   PlusOutlined,
+  CodeSandboxOutlined,
 } from "@ant-design/icons";
 
 import { productDetail } from "../../config/ProductRequest";
 import { requestAddToCart } from "../../config/CartRequest";
 import { listCategory } from "../../config/CategoryRequest";
-import ProductReviews from "../../components/review/ProductReviews";
+import { getProduct3DModelId } from "../../utils/getProduct3DModelId";
 import "./productDetail.css";
 
 function ProductDetail() {
@@ -101,6 +102,7 @@ function ProductDetail() {
       await requestAddToCart(body);
 
       message.success("Thêm vào giỏ hàng thành công");
+      window.dispatchEvent(new Event("cartChanged"));
       navigate("/cart");
     } catch (error) {
       console.log(error);
@@ -108,6 +110,17 @@ function ProductDetail() {
     } finally {
       setAdding(false);
     }
+  };
+
+  const handleView3D = () => {
+    const modelId = getProduct3DModelId(product);
+
+    if (!modelId) {
+      message.warning("Chưa có mô hình 3D khả dụng");
+      return;
+    }
+
+    navigate(`/3d-products/${modelId}`);
   };
 
   const categoryName = useMemo(() => {
@@ -148,9 +161,17 @@ function ProductDetail() {
   const price = Number(product.priceProduct || 0);
 
   return (
-    <div style={{ marginTop: "140px" }}>
+    <div className="productDetailWrapper">
       <div className="productDetailContainer">
         <div className="productDetailWrap">
+          <Button 
+            type="text" 
+            icon={<HomeOutlined />} 
+            onClick={() => navigate('/')}
+            style={{ marginBottom: '16px', fontWeight: 500, paddingLeft: 0 }}
+          >
+            Quay về trang chủ
+          </Button>
           <Breadcrumb
             className="productDetailBreadcrumb"
             items={[
@@ -224,15 +245,27 @@ function ProductDetail() {
 
                 <div className="productDetailQuantity">
                   <span className="productDetailQuantityLabel">Số lượng</span>
-                  <div className="productDetailQtyBox">
-                    <Button icon={<MinusOutlined />} onClick={handleDecrease} />
-                    <InputNumber
-                      min={1}
-                      max={Number(product.stockProduct || 1)}
-                      value={quantity}
-                      onChange={(value) => setQuantity(value || 1)}
-                    />
-                    <Button icon={<PlusOutlined />} onClick={handleIncrease} />
+                  <div className="productDetailQtyControls">
+                    <div className="productDetailQtyBox">
+                      <Button icon={<MinusOutlined />} onClick={handleDecrease} />
+                      <InputNumber
+                        min={1}
+                        max={Number(product.stockProduct || 1)}
+                        value={quantity}
+                        onChange={(value) => setQuantity(value || 1)}
+                      />
+                      <Button icon={<PlusOutlined />} onClick={handleIncrease} />
+                    </div>
+                    <Button
+                      type="default"
+                      size="large"
+                      icon={<CodeSandboxOutlined />}
+                      title="Xem mô hình 3D"
+                      onClick={handleView3D}
+                      className="productDetailView3DBtn"
+                    >
+                      View 3D
+                    </Button>
                   </div>
                 </div>
 
@@ -299,9 +332,6 @@ function ProductDetail() {
               </Descriptions.Item>
             </Descriptions>
           </div>
-
-          {/* Đánh giá sản phẩm */}
-          <ProductReviews productId={product._id} />
         </div>
       </div>
     </div>

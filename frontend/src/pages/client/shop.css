@@ -372,6 +372,24 @@
   color: #607a31 !important;
 }
 
+.shopView3D {
+  height: 36px;
+  padding: 0 12px !important;
+  border-radius: 10px !important;
+  border: 1px solid #9eb86a !important;
+  background: linear-gradient(135deg, #eff6de 0%, #deebc2 100%) !important;
+  color: #5b7428 !important;
+  font-weight: 700;
+  font-size: 12px;
+  box-shadow: 0 6px 14px rgba(138, 168, 77, 0.14);
+}
+
+.shopView3D:hover {
+  border-color: #809a4d !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #9ab565 0%, #85a04f 100%) !important;
+}
+
 .shopEmpty {
   background: rgba(255, 252, 245, 0.9);
   border: 1px solid #eadfcf;
