@@ -36,7 +36,7 @@ export function useScrollReveal() {
   }, []);
 }
 
-const  HomePage = () => {
+function Homepage() {
   useScrollReveal();
 
   return (
@@ -49,4 +49,4 @@ const  HomePage = () => {
     </div>
   );
 }
-export default HomePage;
+export default Homepage;
