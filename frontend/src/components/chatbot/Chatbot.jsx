@@ -10,8 +10,8 @@ const defaultSuggestions = [
   "Cách pha trà chuẩn",
 ];
 
-// ⚠️ QUAN TRỌNG: THAY BẰNG API KEY THỰC TẾ CỦA BẠN ⚠️
-const GEMINI_API_KEY = "AIzaSyBY1KU9Th5R3CgAFDytvrKrCM6pky8jZOA";
+// Lấy API key từ biến môi trường của Vite
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 
 const ChatBot = () => {
   const [open, setOpen] = useState(false);
